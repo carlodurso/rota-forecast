@@ -1,0 +1,17 @@
+{
+  "name": "rota-weather",
+  "version": "1.0.0",
+  "description": "weather forecast for rota sheet",
+  "main": "hellonode.js",
+  "author": "Carlo D'Urso",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "scripts": {
+    "start": "start"
+  },
+  "engines": {
+    "node": "10.15.0"
+  }
+}
