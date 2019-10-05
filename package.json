@@ -13,6 +13,9 @@
     "keywords": [
         "forecast",
         "express api"
-      ],
-    "description": "Weather forecast API"
+    ],
+    "description": "Weather forecast API",
+    "engines": {
+        "node": "12.x"
+      }
 }
