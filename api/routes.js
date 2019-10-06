@@ -45,8 +45,6 @@ router.get('/', function (request, response) {
       res.on('end', function() {
         json_data = JSON.parse(data);
 
-        // will output a Javascript object
-        // console.log(json_data);
         response.status(200).json(json_data.daily.data);
       });
     });
