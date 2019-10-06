@@ -1,6 +1,7 @@
 const http = require('http');
 const express = require('express');
 const router = require('./api/routes');
+const Forecast = require('./models/forecast');
 
 const app = express();
 
