@@ -5,7 +5,6 @@ const router = express.Router();
 const Forecast = require('./models/forecast');
 const https = require('https');
 var js2xmlparser = require("js2xmlparser");
-var jsonxml = require('jsontoxml');
 
 
 
