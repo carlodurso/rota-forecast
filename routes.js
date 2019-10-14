@@ -10,7 +10,7 @@ var js2xmlparser = require("js2xmlparser");
 
 // var url = 'http://api.openweathermap.org/data/2.5/forecast?id=2643743&APPID=12d171d3561ffd86fc9ccc6c79d0c97c';
 var url = 'https://api.darksky.net/forecast/0c9754ea8065c38a4de8c8714434aaf3/51.5074,0.1278?exclude=currently,minutely,hourly,alerts,flags&units=auto';
-var mongourl = 'mongodb://localhost/forecast' || process.env.MONGODB_URI;
+var mongourl = process.env.MONGODB_URI || 'mongodb://localhost/forecast';
 
 // mongoose.connect(mongourl, { useNewUrlParser: true, useUnifiedTopology: true });
 
