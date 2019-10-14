@@ -5,6 +5,8 @@ const router = express.Router();
 const Forecast = require('./models/forecast');
 const https = require('https');
 var js2xmlparser = require("js2xmlparser");
+var jsonxml = require('jsontoxml');
+
 
 
 
@@ -82,21 +84,43 @@ router.get('/', function (request, response) {
 
 router.get('/:query', function(req, res) {
   var query = req.params.query;
-  
-  Forecast.find({
-     'day': query
-  }, function(err, result) {
-      if (err) throw err;
-      if (result) {
-          res.status(200).send(js2xmlparser.parse("forecast", result));
-          // js2xmlparser.parse("forecast", result);
 
-      } else {
-          res.send(JSON.stringify({
-              error : 'Error'
-          }))
-      }
-  })
+
+
+          // find each person with a last name matching 'Ghost'
+        var query = Forecast.findOne({ 'day': query });
+
+        // execute the query at a later time
+        query.exec(function (err, forecast) {
+          if (err) return handleError(err);
+         
+          var data = {
+            "temp" : forecast.celsius, 
+            "icon" : forecast.icon,
+            "forecast" : forecast.forecast
+          }
+
+          res.set('Content-Type', 'text/xml');
+          res.send(js2xmlparser.parse("forecast", data));
+        });
+
+
+  // Forecast.findOne({
+  //    'day': query
+  // }, function(err, result) {
+      
+  //     if (err) throw err;
+
+  //     if (result) {          
+  //         res.status(200).json(result);
+  //         console.log(js2xmlparser.parse("forecast", result));
+
+  //     } else {
+  //         res.send(JSON.stringify({
+  //             error : 'Error'
+  //         }))
+  //     }
+  // })
 })
 
   
