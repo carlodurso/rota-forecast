@@ -5,15 +5,17 @@
         "start": "nodemon app.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "author": "Carlos",
+    "author": "Carlo",
     "license": "ISC",
     "dependencies": {
+        "body-parser": "1.19.0",
         "express": "4.17.1",
         "mongoose": "5.7.3"
     },
     "keywords": [
         "forecast",
-        "express api"
+        "express",
+        "api"
     ],
     "description": "Weather forecast API",
     "engines": {
