@@ -5,7 +5,7 @@ var ForecastSchema   = new Schema({
     forecast: String,
     icon: String,
     celsius: Number,
-    timestamp: {type: Date, unique: false },
+    timestamp: {type: Date, unique: true },
     day: String
 });
 
