@@ -24,7 +24,7 @@ mongoose.connect(mongourl, { useNewUrlParser: true, useUnifiedTopology: true }, 
       
 
         var json = json_data.daily.data;
-
+        console.log(json);
           for(var i = 0; i < json.length; i++) {
             var obj = json[i];
             var date = new Date(obj.time *1000);
@@ -39,7 +39,7 @@ mongoose.connect(mongourl, { useNewUrlParser: true, useUnifiedTopology: true }, 
             });
           }
       });
-      process.exit();
+      // process.exit();
     });
 
     req.on('error', function(e) {
