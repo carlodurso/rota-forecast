@@ -1,8 +1,7 @@
 const express = require('express');
 const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
 const router = express.Router();
-const Forecast = require('./models/forecast');
+const Forecast = require('forecast.js');
 const https = require('https');
 var js2xmlparser = require("js2xmlparser");
 
