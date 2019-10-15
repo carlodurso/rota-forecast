@@ -14,7 +14,7 @@ mongoose.connect(mongourl, { useNewUrlParser: true, useUnifiedTopology: true }, 
 
 // router.get('/', function (request, response) {
 
-    https.get(url, function(res) {
+  let req = https.get(url, function(res) {
       let data = '',
         json_data;
 
