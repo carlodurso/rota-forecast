@@ -1,3 +1,5 @@
+#! /app/bin/node
+
 const express = require('express');
 const mongoose = require("mongoose");
 const router = express.Router();
@@ -6,6 +8,13 @@ const https = require('https');
 
 var url = 'https://api.darksky.net/forecast/0c9754ea8065c38a4de8c8714434aaf3/51.5074,0.1278?exclude=currently,minutely,hourly,alerts,flags&units=auto';
 var mongourl = process.env.MONGODB_URI || 'mongodb://localhost/forecast';
+
+
+
+function sayHello() {
+  console.log('Hello');
+}
+sayHello();
 
 mongoose.connect(mongourl, { useNewUrlParser: true, useUnifiedTopology: true }, function (err, res) {
   if (err) {
