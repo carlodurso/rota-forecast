@@ -1,3 +1,5 @@
+const express = require('express');
+const router = express.Router();
 const mongoose = require("mongoose");
 const Forecast = require('./forecast');
 const https = require('https');
@@ -8,6 +10,7 @@ var mongourl = process.env.MONGODB_URI || 'mongodb://localhost/forecast';
 mongoose.set('useCreateIndex', true);
 mongoose.connect(mongourl)
 
+router.get('/', function (request, response) {
 
     let req = https.get(url, function(res) {
       let data = '',
@@ -21,7 +24,7 @@ mongoose.connect(mongourl)
       
 
         var json = json_data.daily.data;
-        res.status(200).json(json);
+        response.status(200).json(json);
 
           for(var i = 0; i < json.length; i++) {
             var obj = json[i];
@@ -42,5 +45,5 @@ mongoose.connect(mongourl)
     req.on('error', function(e) {
         console.log(e.message);
     });
-
+  });
 // process.exit();
