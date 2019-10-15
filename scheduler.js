@@ -61,5 +61,4 @@ router.get('/', function (request, response) {
         console.log(e.message);
     });
 });
-
-module.exports = schedule;
+process.exit();
