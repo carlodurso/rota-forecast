@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require("mongoose");
 const router = express.Router();
-const Forecast = require('forecast.js');
+const Forecast = require('Forecast');
 const https = require('https');
 
 var url = 'https://api.darksky.net/forecast/0c9754ea8065c38a4de8c8714434aaf3/51.5074,0.1278?exclude=currently,minutely,hourly,alerts,flags&units=auto';

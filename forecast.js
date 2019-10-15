@@ -13,4 +13,5 @@ var ForecastSchema   = new Schema({
 
 // Compile model from schema
 var Forecast = mongoose.model('Forecast', ForecastSchema);
+
 module.exports = Forecast;
