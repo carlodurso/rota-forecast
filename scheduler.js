@@ -1,6 +1,4 @@
-// const express = require('express');
 const mongoose = require("mongoose");
-// const router = express.Router();
 const Forecast = require('./forecast');
 const https = require('https');
 
@@ -10,8 +8,6 @@ var mongourl = process.env.MONGODB_URI || 'mongodb://localhost/forecast';
 mongoose.set('useCreateIndex', true);
 mongoose.connect(mongourl)
 
-
-// router.get('/', function (request, response) {
 
     let req = https.get(url, function(res) {
       let data = '',
@@ -25,24 +21,15 @@ mongoose.connect(mongourl)
       
 
         var json = json_data.daily.data;
-        // response.status(200).json(json);
+        res.status(200).json(json);
 
           for(var i = 0; i < json.length; i++) {
             var obj = json[i];
             var date = new Date(obj.time *1000);
-            // var day = date.toLocaleDateString();
             var mm = date.getMonth() + 1;
             var dd = date.getDate();
             var yy = date.getFullYear();
             var day = dd + '' + mm; //(EU)
-
-            var forecast = new Forecast({
-              forecast: obj.summary,
-              icon: obj.icon,
-              celsius: Math.ceil(obj.temperatureHigh),
-              timestamp: obj.time,
-              day: day
-            });
 
             Forecast.findOneAndUpdate({timestamp: obj.time},{$set:{timestamp: obj.time, celsius:Math.ceil(obj.temperatureHigh),forecast: obj.summary, icon: obj.icon, forecast: obj.summary, day: day}},{upsert:true, new: true}, 
             function(err, doc){
@@ -55,6 +42,5 @@ mongoose.connect(mongourl)
     req.on('error', function(e) {
         console.log(e.message);
     });
-// });
 
-process.exit();
+// process.exit();
