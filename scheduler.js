@@ -32,10 +32,10 @@ mongoose.connect(mongourl, { useNewUrlParser: true, useUnifiedTopology: true }, 
             var dd = date.getDate();
             var yy = date.getFullYear();
             var day = dd + '' + mm; //(EU)
-
+            console.log(day);
             Forecast.findOneAndUpdate({timestamp: obj.time},{$set:{timestamp: obj.time, celsius:Math.ceil(obj.temperatureHigh),forecast: obj.summary, icon: obj.icon, forecast: obj.summary, day: day}},{upsert:true, new: true}, 
             function(err, doc){
-                console.log(day);
+                
             });
           }
       });
