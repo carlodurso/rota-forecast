@@ -39,10 +39,9 @@ mongoose.connect(mongourl, { useNewUrlParser: true, useUnifiedTopology: true }, 
             });
           }
       });
+      process.exit();
     });
 
     req.on('error', function(e) {
         console.log(e.message);
     });
-
-    process.exit();
