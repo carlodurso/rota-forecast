@@ -78,7 +78,7 @@ router.get('/:query', function(req, res) {
     query.exec().then(function (forecast) {
       // handle success
       var data = {
-        "temp" : forecast.celsius + " °C", 
+        "temp" : forecast.celsius + "°", 
         "icon" : forecast.icon,
         "forecast" : forecast.forecast
       }

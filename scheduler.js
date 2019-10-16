@@ -33,7 +33,7 @@ mongoose.connect(mongourl, { useNewUrlParser: true, useUnifiedTopology: true }, 
             var yy = date.getFullYear();
             var day = dd + '' + mm; //(EU)
             console.log(day);
-            Forecast.findOneAndUpdate({timestamp: obj.time},{$set:{timestamp: obj.time, celsius:Math.ceil(obj.temperatureHigh),forecast: obj.summary, icon: obj.icon, forecast: obj.summary, day: day}},{upsert:true, new: true}, 
+            Forecast.findOneAndUpdate({timestamp: obj.time},{$set:{timestamp: obj.time, celsius:Math.ceil(obj.temperatureHigh),forecast: obj.summary, icon: "icon", forecast: obj.summary, day: day}},{upsert:true, new: true}, 
             function(err, doc){
                 
             });
@@ -45,4 +45,4 @@ mongoose.connect(mongourl, { useNewUrlParser: true, useUnifiedTopology: true }, 
         console.log(e.message);
     });
 
-    process.exit();
+    // process.exit();
