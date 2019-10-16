@@ -3,7 +3,7 @@ const Forecast = require('./forecast');
 const https = require('https');
 
 var url = 'https://api.darksky.net/forecast/0c9754ea8065c38a4de8c8714434aaf3/51.5074,0.1278?exclude=currently,minutely,hourly,alerts,flags&units=auto';
-var mongourl = process.env.MONGODB_URI || 'mongodb://localhost/forecast';
+var mongourl = 'mongodb://localhost/forecast';
 
 mongoose.set('useCreateIndex', true);
 mongoose.set('useFindAndModify', false);
@@ -11,8 +11,11 @@ mongoose.connect(mongourl, { useNewUrlParser: true, useUnifiedTopology: true }, 
   if (err) console.log ('ERROR connecting to: ' + mongourl + '. ' + err);
 })
 
+var util = new Promise(function(resolve, reject) {
+  /* do some stuff here */
 
-  let req = https.get(url, function(res) {
+  if (resolve) {
+    let req = https.get(url, function(res) {
       let data = '',
         json_data;
 
@@ -33,7 +36,7 @@ mongoose.connect(mongourl, { useNewUrlParser: true, useUnifiedTopology: true }, 
             var yy = date.getFullYear();
             var day = dd + '' + mm; //(EU)
             console.log(day);
-            Forecast.findOneAndUpdate({timestamp: obj.time},{$set:{timestamp: obj.time, celsius:Math.ceil(obj.temperatureHigh),forecast: obj.summary, icon: "icon", forecast: obj.summary, day: day}},{upsert:true, new: true}, 
+            Forecast.findOneAndUpdate({timestamp: obj.time},{$set:{timestamp: obj.time, celsius:Math.ceil(obj.temperatureHigh),forecast: obj.summary, icon: obj.icon, forecast: obj.summary, day: day}},{upsert:true, new: true}, 
             function(err, doc){
                 
             });
@@ -44,5 +47,16 @@ mongoose.connect(mongourl, { useNewUrlParser: true, useUnifiedTopology: true }, 
     req.on('error', function(e) {
         console.log(e.message);
     });
+  } else {
+      console.log(reject);
+  }
+});
 
-    // process.exit();
+  setTimeout((function() {
+    return process.exit(200);
+  }), 10000);
+
+
+  process.on('exit', function(code) {
+    return console.log(`Succesfully executed scipt.\n Code: ${code}`);
+  });
