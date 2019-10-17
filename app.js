@@ -11,8 +11,6 @@ app.use('/', function(req, res) {
     res.send('api works');
 });
 
-// app.use('/icons', express.static(__dirname + '/public'));
-
 const port = 3000;
 
 app.listen(process.env.PORT || port, () => {
